@@ -12,4 +12,14 @@ RSpec.configure do |config|
   end
 
   config.example_status_persistence_file_path = './tmp/rspec-example-status.txt'
+
+  config.shared_context_metadata_behavior = :apply_to_host_groups
+end
+
+# save to CircleCI's artifacts directory if we're on CircleCI
+if ENV['CIRCLE_ARTIFACTS']
+  require 'simplecov'
+  dir = File.join(ENV['CIRCLE_ARTIFACTS'], 'coverage')
+  SimpleCov.coverage_dir(dir)
+  SimpleCov.start
 end

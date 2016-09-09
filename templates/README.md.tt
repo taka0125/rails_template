@@ -1,5 +1,13 @@
 # First
 
+- install direnv
+
+```
+brew install direnv
+```
+
+- bundle install
+
 ```console
 $ bundle install --path=vendor/bundle --binstubs=.bundle/bin
 ```
@@ -7,11 +15,11 @@ $ bundle install --path=vendor/bundle --binstubs=.bundle/bin
 # autotest
 
 ```console
-$ .bundle/bin/guard
+$ guard
 ```
 
 # autodoc
 
 ```console
-$ AUTODOC=1 .bundle/bin/rspec
+$ AUTODOC=1 rspec
 ```

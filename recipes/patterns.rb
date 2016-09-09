@@ -1,0 +1,6 @@
+create_file 'app/forms/.gitkeep'
+create_file 'app/queries/.gitkeep'
+create_file 'app/services/.gitkeep'
+create_file 'app/validators/.gitkeep'
+create_file 'app/values/.gitkeep'
+create_file 'app/finders/.gitkeep'
