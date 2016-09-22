@@ -1,0 +1,36 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  charset: utf8mb4
+  collation: utf8mb4_general_ci
+  pool: 5
+  username: root
+  password: <%= %Q!<%= ENV['#{@env_key_base}_DATABASE_PASSWORD'] %%>! %>
+  strict: true
+
+development: &development
+  <<: *default
+  host: mysql
+  database: <%= @app_name %>_development
+
+development_slave:
+  <<: *development
+
+test: &test
+  <<: *default
+  host: mysql
+  database: <%= @app_name %>_test
+
+test_slave:
+  <<: *test
+
+# FIXME
+production: &production
+  <<: *default
+  host: 'localhost'
+  database: <%= @app_name %>_production
+
+# FIXME
+production_slave:
+  <<: *production
+  host: 'localhost'

@@ -24,12 +24,17 @@ before_fork do |server, worker|
       sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
       Process.kill(sig, File.read(old_pid).to_i)
     rescue Errno::ENOENT, Errno::ESRCH
+      Rails.logger.error 'Errno::ENOENT, Errno::ESRCH'
     end
   end
 
   sleep 1
 end
 
-after_fork do |server, worker|
+after_fork do |_, _|
   defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
+end
+
+before_exec do |_|
+  ENV['BUNDLE_GEMFILE'] = "#{current_dir}/Gemfile"
 end

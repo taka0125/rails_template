@@ -1,2 +1,3 @@
-remove_file '.envrc'
-create_file '.envrc', read_file('direnv/envrc')
+copy_file 'envrc', '.envrc'
+
+run 'which direnv > /dev/null 2> /dev/null && direnv allow'
